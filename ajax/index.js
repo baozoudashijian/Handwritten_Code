@@ -4,7 +4,7 @@ const ajax = {
         xhr.open('GET', url)
         xhr.send(null)
         xhr.onreadystatechange = function(data) {
-            if(xhr.readyState == 4 && xhr.status >= 300 || xhr.status < 400) {
+            if(xhr.readyState == 4 && xhr.status >= 200 && xhr.status < 300 || xhr.status === 304) {
                 cb(data)
             }
         }
@@ -14,7 +14,7 @@ const ajax = {
         xhr.open('POST', url)
         xhr.send(data)
         xhr.onreadystatechange = function(data) {
-            if(xhr.readyState == 4 && xhr.status >= 300 || xhr.status < 400) {
+            if(xhr.readyState == 4 && xhr.status >= 200 && xhr.status < 300  || xhr.status === 304) {
                 cb(data)
             }
         }
