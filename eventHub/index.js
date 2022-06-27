@@ -7,16 +7,22 @@ const EventHub = {
     },
     emit: (type, data) => {
         EventHub['q'][type].map((listener) => listener(data))
+    },
+    off: (type, handler) => {
+        EventHub['q'][type].splice(EventHub['q'][type].findIndex((fn) => fn == handler ) ,1)
     }
+    // off移除监听方法，你不监听不就完事了
 }
 
-EventHub.on('crash', (data) => {
+const fn = (data) => {
     console.log(data)
-})
+}
 
-EventHub.on('run', (data) => {
-    console.log(data)
-})
+EventHub.on('crash', fn)
+
+EventHub.off('crash', fn)
+
+EventHub.on('run', fn)
 
 EventHub.emit('crash', 'crash')
 EventHub.emit('run', 'run')
