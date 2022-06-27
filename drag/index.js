@@ -11,8 +11,15 @@ slide.onmousedown = function(e) {
 
 document.onmousemove = function(e) {
     if(!drag) return
-    slide.style.top = parseInt(slide.style.top || 0) + e.clientY - position[1] + 'px'
-    slide.style.left = parseInt(slide.style.left || 0) +  e.clientX - position[0] + 'px'
+
+    let x = e.clientX
+    let y = e.clientY
+    let deltaX = x - position[0]
+    let deltaY = y - position[1]
+    let left = parseInt(slide.style.left || 0)
+    let top = parseInt(slide.style.top || 0)
+    slide.style.top = top + deltaY + 'px'
+    slide.style.left = left + deltaX + 'px'
     position = [e.clientX, e.clientY]
 }
 
