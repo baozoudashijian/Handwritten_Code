@@ -52,3 +52,10 @@ const b = deepClone(a)
  * a.b = function () {}
  *
 */
+
+/*
+ * 第二种情况
+ * 加一句代码就怂了
+ * a.self = a
+ *
+*/
