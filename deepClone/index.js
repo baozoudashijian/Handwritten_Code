@@ -23,7 +23,9 @@ function deepClone(a) {
         }
         cache.set(a, result)
         for(let key in a) {
-            result[key] = deepClone(a[key])
+            if(a.hasOwnProperty(key)) {
+                result[key] = deepClone(a[key])
+            }
         }
         return result
     } else {
