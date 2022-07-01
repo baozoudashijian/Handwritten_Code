@@ -1,5 +1,7 @@
-const cache = new Map()
-function deepClone(a) {
+function deepClone(a, cache) {
+    if(!cache) {
+        cache = new Map() 
+    }
     if(cache.get(a)) {
         return cache.get(a)
     }
@@ -24,7 +26,7 @@ function deepClone(a) {
         cache.set(a, result)
         for(let key in a) {
             if(a.hasOwnProperty(key)) {
-                result[key] = deepClone(a[key])
+                result[key] = deepClone(a[key], cache)
             }
         }
         return result
