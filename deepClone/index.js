@@ -1,4 +1,8 @@
+const cache = new Map()
 function deepClone(a) {
+    if(cache.get(a)) {
+        return cache.get(a)
+    }
     // string number boolean undefined null symbol bigint object
     if(a instanceof Object) { // 分数据类型
         let result = undefined
@@ -17,6 +21,7 @@ function deepClone(a) {
         } else {
             result = {}
         }
+        cache.set(a, result)
         for(let key in a) {
             result[key] = deepClone(a[key])
         }
